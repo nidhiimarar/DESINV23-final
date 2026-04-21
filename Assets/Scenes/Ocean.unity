@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customFishImage: {fileID: 0}
+  movementType: 1
   swimSpeed: 2
   wanderChangeInterval: 2
   fleeRadius: 2
