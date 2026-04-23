@@ -8,6 +8,11 @@ public class Button_Func : MonoBehaviour
         SceneManager.LoadScene("Lighthouse");
     }
 
+    public void ToTheOcean()
+    {
+        SceneManager.LoadScene("Ocean");
+    }
+
     public void QuitGame()
     {
         #if UNITY_EDITOR
