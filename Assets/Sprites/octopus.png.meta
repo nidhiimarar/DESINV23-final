@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ba507441ecc70bc418073ee8b9253956
+guid: e8fd45a4cf952c84ead8d00776f8d6b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8966945178157639174
-    second: fish_0
+      213: -6349360636359246829
+    second: octopus_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,51 +100,66 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fish_0
+      name: octopus_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 108
-        width: 476
-        height: 296
+        x: 0
+        y: 0
+        width: 4061
+        height: 3772
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape:
-      - - {x: 23, y: -99}
-        - {x: 46, y: -100}
-        - {x: 146, y: -36}
-        - {x: 168, y: -66}
-        - {x: 212, y: -86}
-        - {x: 236, y: -79}
-        - {x: 236, y: -59}
-        - {x: 235, y: -57}
-        - {x: 210, y: -3}
-        - {x: 236, y: 54}
-        - {x: 236, y: 87}
-        - {x: 206, y: 86}
-        - {x: 161, y: 44}
-        - {x: 99, y: 66}
-        - {x: 24, y: 99}
-        - {x: 18, y: 146}
-        - {x: -14, y: 146}
-        - {x: -69, y: 109}
-        - {x: -134, y: 86}
-        - {x: -188, y: 58}
-        - {x: -236, y: 10}
-        - {x: -236, y: -9}
-        - {x: -198, y: -51}
-        - {x: -133, y: -88}
-        - {x: -65, y: -102}
-        - {x: -52, y: -128}
-        - {x: -7, y: -146}
-        - {x: 22, y: -146}
-      tessellationDetail: 0.083
+      - - {x: 1709.2686, y: -1657.9348}
+        - {x: 1637.8838, y: -1118.5111}
+        - {x: 1395.9688, y: -1172.0568}
+        - {x: 1282.9429, y: -1255.3502}
+        - {x: 1280.96, y: -1398.1388}
+        - {x: 1332.5156, y: -1445.7351}
+        - {x: 1423.7295, y: -1445.7351}
+        - {x: 1447.5244, y: -1410.0378}
+        - {x: 1386.0542, y: -1505.2303}
+        - {x: 1300.7891, y: -1529.0284}
+        - {x: 739.6255, y: -1015.3859}
+        - {x: 1282.9429, y: -1150.242}
+        - {x: 1802.4653, y: -989.6047}
+        - {x: 2030.5, y: -767.489}
+        - {x: 2030.5, y: -182.45216}
+        - {x: 1927.3887, y: 140.80547}
+        - {x: 1610.123, y: 67.42797}
+        - {x: 1495.1143, y: -29.747635}
+        - {x: 1459.4219, y: -190.38486}
+        - {x: 1552.6187, y: -279.62778}
+        - {x: 1616.0718, y: -247.89696}
+        - {x: 1639.8667, y: -216.16615}
+        - {x: 1620.0376, y: -162.6204}
+        - {x: 1748.9268, y: -150.72134}
+        - {x: 1633.918, y: -642.5489}
+        - {x: 1445.5415, y: -170.5531}
+        - {x: 1651.7642, y: 1047.1167}
+        - {x: 1171.8999, y: 1886}
+        - {x: -1316.6523, y: 1886}
+        - {x: -1417.7808, y: 327.224}
+        - {x: -1368.208, y: -41.64669}
+        - {x: -1925.4058, y: -99.15878}
+        - {x: -2030.5, y: -243.9306}
+        - {x: -2030.5, y: -767.489}
+        - {x: -2004.7222, y: -904.3281}
+        - {x: -1425.7124, y: -1158.1746}
+        - {x: -1068.7886, y: -1164.1241}
+        - {x: -1302.772, y: -1176.0232}
+        - {x: -1538.7383, y: -1144.2924}
+        - {x: -1663.6616, y: -1225.6025}
+        - {x: -1770.7388, y: -1384.2566}
+        - {x: -1762.8071, y: -1886}
+        - {x: 1574.4307, y: -1886}
+      tessellationDetail: 0
       bones: []
-      spriteID: 606ec70712df07c70800000000000000
-      internalID: 8966945178157639174
+      spriteID: 31c75fe342a82e7a0800000000000000
+      internalID: -6349360636359246829
       vertices: []
       indices: 
       edges: []
@@ -153,7 +168,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: eb3c3912df7a5944e98f39137e9e1511
+    spriteID: 16424e09ddaffe44782affd4347d42f6
     internalID: 0
     vertices: []
     indices: 
@@ -163,7 +178,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fish_0: 8966945178157639174
+      octopus_0: -6349360636359246829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

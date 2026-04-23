@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class FishTypeConfig
@@ -14,21 +16,38 @@ public class FishTypeConfig
 public class LevelConfig
 {
     public int level;
-    public Fish.MovementType fishOftheDay;
+    public Fish.MovementType fishOfTheDay;
     public FishTypeConfig[] fishTypes;
 }
 
 public class FishSpawner : MonoBehaviour
 {
+    [Header("Fish")]
     [SerializeField] private GameObject fishPrefab;
     [SerializeField] private LevelConfig[] levels;
     [SerializeField] private int currentLevel = 1;
 
-    [Header("World Bounds (independent of camera)")]
+    [Header("World Bounds")]
     [SerializeField] private Vector2 worldMin = new Vector2(-10f, -5f);
     [SerializeField] private Vector2 worldMax = new Vector2(10f, 5f);
 
+    [Header("Fish of the Day UI")]
+    [SerializeField] private GameObject fullPanel;
+    [SerializeField] private Image fishImage;
+    [SerializeField] private GameObject minimizedView;
+    [SerializeField] private Image miniFishImage;
+    [SerializeField] private TextMeshProUGUI counterText;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite wanderSprite;
+    [SerializeField] private Sprite traverseSprite;
+    [SerializeField] private Sprite crabSprite;
+    [SerializeField] private Sprite octopusSprite;
+
     private float padding = 0.5f;
+    private int totalTarget;
+    private int caughtTarget;
+    private Fish.MovementType currentTargetType;
 
     void Start()
     {
@@ -44,10 +63,74 @@ public class FishSpawner : MonoBehaviour
             return;
         }
 
+        currentTargetType = config.fishOfTheDay;
+
+        int targetCount = 0;
+        foreach (FishTypeConfig ft in config.fishTypes)
+            if (ft.movementType == config.fishOfTheDay)
+                targetCount += ft.count;
+
+        InitializeUI(config.fishOfTheDay, targetCount);
+
         foreach (FishTypeConfig fishType in config.fishTypes)
             for (int i = 0; i < fishType.count; i++)
                 SpawnFish(fishType);
     }
+
+    // --- UI ---
+
+    void InitializeUI(Fish.MovementType targetType, int total)
+    {
+        totalTarget = total;
+        caughtTarget = 0;
+
+        Sprite targetSprite = GetSprite(targetType);
+        fishImage.sprite = targetSprite;
+        miniFishImage.sprite = targetSprite;
+
+        fullPanel.SetActive(true);
+        minimizedView.SetActive(false);
+
+        UpdateCounter();
+    }
+
+    public void OnMinimizeClicked()
+    {
+        fullPanel.SetActive(false);
+        minimizedView.SetActive(true);
+    }
+
+    public void OnMaximizeClicked()
+    {
+        fullPanel.SetActive(true);
+        minimizedView.SetActive(false);
+    }
+
+    public void RegisterCatch(Fish.MovementType caughtType)
+    {
+        if (caughtType != currentTargetType) return;
+        caughtTarget = Mathf.Min(caughtTarget + 1, totalTarget);
+        UpdateCounter();
+    }
+
+    void UpdateCounter()
+    {
+        counterText.text = $"{caughtTarget}/{totalTarget}";
+    }
+
+    Sprite GetSprite(Fish.MovementType type)
+    {
+        return type switch
+        {
+            Fish.MovementType.Wander   => wanderSprite,
+            Fish.MovementType.Traverse => traverseSprite,
+            Fish.MovementType.Crab     => crabSprite,
+            Fish.MovementType.Octopus  => octopusSprite,
+            _                          => null
+        };
+    }
+
+    // --- Spawning ---
 
     Vector2 GetSpawnPosition(Fish.MovementType movementType)
     {
@@ -73,6 +156,7 @@ public class FishSpawner : MonoBehaviour
 
         fish.SetMovementType(config.movementType);
         fish.SetStats(config.swimSpeed, config.fleeRadius, config.fleeSpeed);
-        fish.SetWorldBounds(worldMin, worldMax); // pass world bounds in
+        fish.SetWorldBounds(worldMin, worldMax);
+        fish.SetSprite(GetSprite(config.movementType));
     }
 }
