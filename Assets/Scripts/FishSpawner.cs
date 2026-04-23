@@ -23,12 +23,14 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private LevelConfig[] levels;
     [SerializeField] private int currentLevel = 1;
 
-    private Camera mainCamera;
+    [Header("World Bounds (independent of camera)")]
+    [SerializeField] private Vector2 worldMin = new Vector2(-10f, -5f);
+    [SerializeField] private Vector2 worldMax = new Vector2(10f, 5f);
+
     private float padding = 0.5f;
 
     void Start()
     {
-        mainCamera = Camera.main;
         SpawnFishForLevel(currentLevel);
     }
 
@@ -42,32 +44,24 @@ public class FishSpawner : MonoBehaviour
         }
 
         foreach (FishTypeConfig fishType in config.fishTypes)
-        {
             for (int i = 0; i < fishType.count; i++)
                 SpawnFish(fishType);
-        }
     }
 
     Vector2 GetSpawnPosition(Fish.MovementType movementType)
     {
-        Vector2 screenMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 screenMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
-        screenMin += Vector2.one * padding;
-        screenMax -= Vector2.one * padding;
+        Vector2 min = worldMin + Vector2.one * padding;
+        Vector2 max = worldMax - Vector2.one * padding;
+
+        float sliderOffset = 1.0f; // push spawn area up away from slider at bottom
 
         if (movementType == Fish.MovementType.Crab)
         {
-            float crabMaxY = Mathf.Lerp(screenMin.y, screenMax.y, 0.2f);
-            return new Vector2(
-                Random.Range(screenMin.x, screenMax.x),
-                Random.Range(screenMin.y, crabMaxY)
-            );
+            float crabMaxY = Mathf.Lerp(min.y + sliderOffset, max.y, 0.1f);
+            return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y + sliderOffset, crabMaxY));
         }
 
-        return new Vector2(
-            Random.Range(screenMin.x, screenMax.x),
-            Random.Range(screenMin.y, screenMax.y)
-        );
+        return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y + sliderOffset, max.y));
     }
 
     void SpawnFish(FishTypeConfig config)
@@ -78,5 +72,6 @@ public class FishSpawner : MonoBehaviour
 
         fish.SetMovementType(config.movementType);
         fish.SetStats(config.swimSpeed, config.fleeRadius, config.fleeSpeed);
+        fish.SetWorldBounds(worldMin, worldMax); // pass world bounds in
     }
 }

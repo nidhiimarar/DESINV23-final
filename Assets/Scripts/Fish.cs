@@ -23,7 +23,12 @@ public class Fish : MonoBehaviour
     private Camera mainCamera;
     private Vector2 screenMin;
     private Vector2 screenMax;
-    private float padding = 0.5f;
+    private float padding = 0.2f;
+    private float traverseSpawnPadding = 1.5f;
+    private float sliderOffset = 1.5f; 
+    private bool useWorldBounds = false;
+    private Vector2 worldMin;
+    private Vector2 worldMax;
 
     // Traverse state
     private float traverseY;
@@ -107,6 +112,13 @@ public class Fish : MonoBehaviour
         fleeSpeed = fleeSpd;
     }
 
+    public void SetWorldBounds(Vector2 min, Vector2 max)
+    {
+        worldMin = min;
+        worldMax = max;
+        useWorldBounds = true;
+    }
+
     void CrabWalk(){
         crabWalkTimer -= Time.deltaTime;
 
@@ -182,18 +194,13 @@ public class Fish : MonoBehaviour
     void ResetTraverse()
     {
         CalculateBounds();
-
         traverseDirection = (Random.value > 0.5f) ? 1 : -1;
         traverseY = Random.Range(screenMin.y, screenMax.y);
 
-        // Spawn on opposite side from direction of travel
-        float spawnX = traverseDirection == 1 ? screenMin.x - padding - 0.5f : screenMax.x + padding + 0.5f;
+        float spawnX = traverseDirection == 1 
+            ? screenMin.x - traverseSpawnPadding - 0.5f 
+            : screenMax.x + traverseSpawnPadding + 0.5f;
         transform.position = new Vector3(spawnX, traverseY, transform.position.z);
-
-        // Face direction of travel
-        // Vector3 scale = transform.localScale;
-        // scale.x = traverseDirection == 1 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-        // transform.localScale = scale;
     }
 
 
@@ -225,10 +232,18 @@ public class Fish : MonoBehaviour
 
     void CalculateBounds()
     {
-        screenMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
-        screenMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
-        screenMin += Vector2.one * padding;
-        screenMax -= Vector2.one * padding;
+        if (useWorldBounds)
+        {
+            screenMin = worldMin + new Vector2(padding, padding + sliderOffset);
+            screenMax = worldMax - Vector2.one * padding;
+        }
+        else
+        {
+            screenMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
+            screenMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
+            screenMin += new Vector2(padding, padding + sliderOffset);
+            screenMax -= Vector2.one * padding;
+        }
     }
 
     void ClampToBounds()
