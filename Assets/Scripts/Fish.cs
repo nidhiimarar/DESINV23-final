@@ -12,6 +12,10 @@ public class Fish : MonoBehaviour
 
     [SerializeField] private MovementType movementType = MovementType.Wander;
 
+    private bool useWorldBounds = false;
+    private Vector2 worldMin;
+    private Vector2 worldMax;
+    
     private float swimSpeed = 2f;
     private float wanderChangeInterval = 25f;
 
@@ -23,7 +27,9 @@ public class Fish : MonoBehaviour
     private Camera mainCamera;
     private Vector2 screenMin;
     private Vector2 screenMax;
-    private float padding = 0.5f;
+    private float padding = 0.2f;
+    private float traverseSpawnPadding = 1.5f;
+    private float sliderOffset = 1.5f;
 
     // Traverse state
     private float traverseY;
@@ -79,8 +85,8 @@ public class Fish : MonoBehaviour
             isFleeing = false;
             if (movementType == MovementType.Traverse){
                 Traverse();
-                bool exitedRight = traverseDirection == 1 && transform.position.x > screenMax.x + padding + 1f;
-                bool exitedLeft = traverseDirection == -1 && transform.position.x < screenMin.x - padding - 1f;
+                bool exitedRight = traverseDirection == 1 && transform.position.x > screenMax.x + traverseSpawnPadding + 1f;
+                bool exitedLeft = traverseDirection == -1 && transform.position.x < screenMin.x - traverseSpawnPadding - 1f;
                 if (exitedRight || exitedLeft){
                     ResetTraverse();
                 }
@@ -186,8 +192,7 @@ public class Fish : MonoBehaviour
         traverseDirection = (Random.value > 0.5f) ? 1 : -1;
         traverseY = Random.Range(screenMin.y, screenMax.y);
 
-        // Spawn on opposite side from direction of travel
-        float spawnX = traverseDirection == 1 ? screenMin.x - padding - 0.5f : screenMax.x + padding + 0.5f;
+        float spawnX = traverseDirection == 1 ? screenMin.x - traverseSpawnPadding - 0.5f : screenMax.x + traverseSpawnPadding + 0.5f;
         transform.position = new Vector3(spawnX, traverseY, transform.position.z);
 
         // Face direction of travel
@@ -225,10 +230,25 @@ public class Fish : MonoBehaviour
 
     void CalculateBounds()
     {
-        screenMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
-        screenMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
-        screenMin += Vector2.one * padding;
-        screenMax -= Vector2.one * padding;
+        if (useWorldBounds)
+        {
+            screenMin = worldMin + new Vector2(padding, padding + sliderOffset);
+            screenMax = worldMax - Vector2.one * padding;
+        }
+        else
+        {
+            screenMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
+            screenMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
+            screenMin += new Vector2(padding, padding + sliderOffset);
+            screenMax -= Vector2.one * padding;
+        }
+    }
+
+    public void SetWorldBounds(Vector2 min, Vector2 max)
+    {
+        worldMin = min;
+        worldMax = max;
+        useWorldBounds = true;
     }
 
     void ClampToBounds()
