@@ -14,6 +14,7 @@ public class FishTypeConfig
 public class LevelConfig
 {
     public int level;
+    public Fish.MovementType fishOftheDay;
     public FishTypeConfig[] fishTypes;
 }
 
