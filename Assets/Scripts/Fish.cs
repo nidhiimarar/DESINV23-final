@@ -2,18 +2,21 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    public enum MovementType { Wander, Traverse }
+    public enum MovementType { Wander, Traverse, Crab, Octopus, Empty}
 
-    [SerializeField] private Sprite customFishImage;
+    [Header("Sprites")]
+    [SerializeField] private Sprite wanderFishImage;
+    [SerializeField] private Sprite traverseFishImage;
+    [SerializeField] private Sprite crabImage;
+    [SerializeField] private Sprite octopusImage;
+
     [SerializeField] private MovementType movementType = MovementType.Wander;
 
-    [Header("Movement")]
-    [SerializeField] private float swimSpeed = 2f;
-    [SerializeField] private float wanderChangeInterval = 25f;
+    private float swimSpeed = 2f;
+    private float wanderChangeInterval = 25f;
 
-    [Header("Mouse Avoidance")]
-    [SerializeField] private float fleeRadius = 2f;
-    [SerializeField] private float fleeSpeed = 3.5f;
+    private float fleeRadius = 2f;
+    private float fleeSpeed = 3.5f;
 
     private Vector2 wanderTarget;
     private float wanderTimer;
@@ -25,22 +28,39 @@ public class Fish : MonoBehaviour
     // Traverse state
     private float traverseY;
     private bool isFleeing;
+    private int traverseDirection;
 
-    void Awake()
-    {
-        if (customFishImage != null)
-            GetComponent<SpriteRenderer>().sprite = customFishImage;
-    }
+    // Crab
+    private float crabWalkTimer;
+    private int crabWalkDirection = 1;
 
     void Start()
     {
         mainCamera = Camera.main;
         CalculateBounds();
 
+        AssignSprite();
+        crabWalkTimer = Random.Range(1f, 6f);
+
         if (movementType == MovementType.Traverse)
-            InitTraverse();
+            ResetTraverse();
         else
             PickNewWanderTarget();
+    }
+
+    void AssignSprite()
+    {
+        Sprite chosen = movementType switch
+        {
+            MovementType.Wander   => wanderFishImage,
+            MovementType.Traverse => traverseFishImage,
+            MovementType.Crab     => crabImage,
+            MovementType.Octopus  => octopusImage,
+            _                     => null
+        };
+
+        if (chosen != null)
+            GetComponent<SpriteRenderer>().sprite = chosen;
     }
 
     void Update()
@@ -50,35 +70,74 @@ public class Fish : MonoBehaviour
         Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         float distToMouse = Vector2.Distance(transform.position, mouseWorld);
 
-        if (movementType == MovementType.Traverse)
+        if (distToMouse < fleeRadius)
         {
-            if (distToMouse < fleeRadius)
-            {
-                isFleeing = true;
-                Flee(mouseWorld);
-            }
-            else
-            {
-                isFleeing = false;
-                Traverse();
-            }
-
-            // Respawn once fully off the left edge
-            if (transform.position.x < screenMin.x - padding - 1f)
-                InitTraverse();
+            isFleeing = true;
+            Flee(mouseWorld);
         }
-        else
-        {
-            if (distToMouse < fleeRadius)
-                Flee(mouseWorld);
-            else
+        else {
+            isFleeing = false;
+            if (movementType == MovementType.Traverse){
+                Traverse();
+                bool exitedRight = traverseDirection == 1 && transform.position.x > screenMax.x + padding + 1f;
+                bool exitedLeft = traverseDirection == -1 && transform.position.x < screenMin.x - padding - 1f;
+                if (exitedRight || exitedLeft){
+                    ResetTraverse();
+                }
+            }
+            else if (movementType == MovementType.Crab){
+                CrabWalk();
+            }    
+            else{
                 Wander();
-
-            ClampToBounds();
+                ClampToBounds();
+            }
         }
     }
 
-    // --- Wander ---
+    public void SetMovementType(MovementType type)
+    {
+        movementType = type;
+    }
+
+    public void SetStats(float speed, float fleeRad, float fleeSpd)
+    {
+        swimSpeed = speed;
+        fleeRadius = fleeRad;
+        fleeSpeed = fleeSpd;
+    }
+
+    void CrabWalk(){
+        crabWalkTimer -= Time.deltaTime;
+
+        bool hitWall = false;
+
+        if (transform.position.x <= screenMin.x){
+            crabWalkDirection = 1;
+            transform.position = new Vector3(screenMin.x + 0.05f, transform.position.y, transform.position.z);
+            hitWall = true;
+        }
+        else if (transform.position.x >= screenMax.x){
+            crabWalkDirection = -1;
+            transform.position = new Vector3(screenMax.x - 0.05f, transform.position.y, transform.position.z);
+            hitWall = true;
+        }
+
+        // Reset timer on wall hit so random flip can't immediately re-reverse
+        if (hitWall){
+            crabWalkTimer = Random.Range(1f, 6f);
+        }
+
+        Vector2 target = new Vector2(transform.position.x + swimSpeed * Time.deltaTime * crabWalkDirection, transform.position.y);
+        transform.position = new Vector3(target.x, target.y, transform.position.z);
+
+        if (crabWalkTimer <= 0){
+            crabWalkDirection = crabWalkDirection * -1;
+            crabWalkTimer = Random.Range(1f, 6f);
+        }
+
+        ClampToBounds();
+    }
 
     void Wander()
     {
@@ -96,8 +155,11 @@ public class Fish : MonoBehaviour
 
         if (movementType == MovementType.Traverse)
         {
-            // Only flee left (forward), lock Y to current traverse lane
-            fleeTarget = new Vector2(transform.position.x - Mathf.Abs(fleeDirection.x) * 2f, traverseY);
+            fleeTarget = new Vector2(transform.position.x + traverseDirection * Mathf.Abs(fleeDirection.x) * 2f, traverseY);
+        }
+        else if (movementType == MovementType.Crab){
+            fleeTarget = new Vector2(transform.position.x + (fleeDirection.x) * 2f, transform.position.y);
+            fleeTarget = ClampPoint(fleeTarget);
         }
         else
         {
@@ -117,48 +179,46 @@ public class Fish : MonoBehaviour
         wanderTimer = wanderChangeInterval;
     }
 
-    // --- Traverse ---
-
-    void InitTraverse()
+    void ResetTraverse()
     {
         CalculateBounds();
 
-        float spawnX = screenMax.x + padding + 0.5f;
+        traverseDirection = (Random.value > 0.5f) ? 1 : -1;
         traverseY = Random.Range(screenMin.y, screenMax.y);
+
+        // Spawn on opposite side from direction of travel
+        float spawnX = traverseDirection == 1 ? screenMin.x - padding - 0.5f : screenMax.x + padding + 0.5f;
         transform.position = new Vector3(spawnX, traverseY, transform.position.z);
 
-        // Face left
-        Vector3 scale = transform.localScale;
-        scale.x = Mathf.Abs(scale.x);
-        transform.localScale = scale;
+        // Face direction of travel
+        // Vector3 scale = transform.localScale;
+        // scale.x = traverseDirection == 1 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+        // transform.localScale = scale;
     }
+
 
     void Traverse()
     {
-        // Smoothly return to the traverse Y lane after fleeing
-        float targetY = Mathf.MoveTowards(transform.position.y, traverseY, swimSpeed * Time.deltaTime);
-        Vector2 target = new Vector2(transform.position.x - swimSpeed * Time.deltaTime, targetY);
+        Vector2 target = new Vector2(transform.position.x + swimSpeed * Time.deltaTime * traverseDirection, transform.position.y);
         transform.position = new Vector3(target.x, target.y, transform.position.z);
 
-        // Face left
-        Vector3 scale = transform.localScale;
-        scale.x = Mathf.Abs(scale.x);
-        transform.localScale = scale;
+        // Face direction of travel
+        // Vector3 scale = transform.localScale;
+        // scale.x = traverseDirection == 1 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        // transform.localScale = scale;
     }
-
-    // --- Shared ---
 
     void MoveTowards(Vector2 target, float speed)
     {
         Vector2 newPos = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        float moveDir = target.x - transform.position.x;
-        if (Mathf.Abs(moveDir) > 0.01f)
-        {
-            Vector3 scale = transform.localScale;
-            scale.x = moveDir > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-            transform.localScale = scale;
-        }
+        // float moveDir = target.x - transform.position.x;
+        // if (Mathf.Abs(moveDir) > 0.01f)
+        // {
+        //     Vector3 scale = transform.localScale;
+        //     scale.x = moveDir > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+        //     transform.localScale = scale;
+        // }
 
         transform.position = newPos;
     }
