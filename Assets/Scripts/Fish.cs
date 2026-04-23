@@ -4,12 +4,6 @@ public class Fish : MonoBehaviour
 {
     public enum MovementType { Wander, Traverse, Crab, Octopus, Empty}
 
-    [Header("Sprites")]
-    [SerializeField] private Sprite wanderFishImage;
-    [SerializeField] private Sprite traverseFishImage;
-    [SerializeField] private Sprite crabImage;
-    [SerializeField] private Sprite octopusImage;
-
     [SerializeField] private MovementType movementType = MovementType.Wander;
 
     private bool useWorldBounds = false;
@@ -45,7 +39,6 @@ public class Fish : MonoBehaviour
         mainCamera = Camera.main;
         CalculateBounds();
 
-        AssignSprite();
         crabWalkTimer = Random.Range(1f, 6f);
 
         if (movementType == MovementType.Traverse)
@@ -54,19 +47,21 @@ public class Fish : MonoBehaviour
             PickNewWanderTarget();
     }
 
-    void AssignSprite()
+    public void SetSprite(Sprite sprite)
     {
-        Sprite chosen = movementType switch
-        {
-            MovementType.Wander   => wanderFishImage,
-            MovementType.Traverse => traverseFishImage,
-            MovementType.Crab     => crabImage,
-            MovementType.Octopus  => octopusImage,
-            _                     => null
-        };
+        GetComponent<SpriteRenderer>().sprite = sprite;
 
-        if (chosen != null)
-            GetComponent<SpriteRenderer>().sprite = chosen;
+        PolygonCollider2D col = GetComponent<PolygonCollider2D>();
+        if (col != null)
+        {
+            col.pathCount = sprite.GetPhysicsShapeCount();
+            for (int i = 0; i < sprite.GetPhysicsShapeCount(); i++)
+            {
+                var points = new System.Collections.Generic.List<Vector2>();
+                sprite.GetPhysicsShape(i, points);
+                col.SetPath(i, points);
+            }
+        }
     }
 
     void Update()
@@ -105,6 +100,8 @@ public class Fish : MonoBehaviour
     {
         movementType = type;
     }
+
+    public MovementType GetMovementType() => movementType;
 
     public void SetStats(float speed, float fleeRad, float fleeSpd)
     {

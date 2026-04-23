@@ -291,7 +291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 434769037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 868581431}
+        m_TargetAssemblyTypeName: FishSpawner, Assembly-CSharp
+        m_MethodName: OnMinimizeClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &434769037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,11 +558,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1005575811}
+  m_Father: {fileID: 922161216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.5, y: -1.0911}
+  m_AnchoredPosition: {x: 17, y: -2}
   m_SizeDelta: {x: 119.6939, y: 28.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &778900870
@@ -582,8 +594,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -749,7 +761,7 @@ RectTransform:
   m_Children:
   - {fileID: 43082791}
   - {fileID: 898442881}
-  - {fileID: 1005575811}
+  - {fileID: 922161216}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -768,7 +780,7 @@ GameObject:
   - component: {fileID: 868581432}
   - component: {fileID: 868581431}
   m_Layer: 0
-  m_Name: FishSpawner
+  m_Name: FishManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,7 +801,7 @@ MonoBehaviour:
   fishPrefab: {fileID: 5919853423919144191, guid: c6ad4af1dd20c76418a2cb488a2860eb, type: 3}
   levels:
   - level: 1
-    fishOftheDay: 0
+    fishOfTheDay: 0
     fishTypes:
     - movementType: 0
       count: 5
@@ -806,9 +818,19 @@ MonoBehaviour:
       swimSpeed: 2
       fleeRadius: 1
       fleeSpeed: 3.5
+    - movementType: 3
+      count: 5
+      swimSpeed: 2
+      fleeRadius: 1
+      fleeSpeed: 3.5
   - level: 2
-    fishOftheDay: 0
+    fishOfTheDay: 0
     fishTypes:
+    - movementType: 0
+      count: 0
+      swimSpeed: 0
+      fleeRadius: 0
+      fleeSpeed: 0
     - movementType: 0
       count: 0
       swimSpeed: 0
@@ -820,7 +842,7 @@ MonoBehaviour:
       fleeRadius: 0
       fleeSpeed: 0
   - level: 3
-    fishOftheDay: 0
+    fishOfTheDay: 0
     fishTypes:
     - movementType: 0
       count: 0
@@ -828,11 +850,20 @@ MonoBehaviour:
       fleeRadius: 0
       fleeSpeed: 0
   - level: 4
-    fishOftheDay: 0
+    fishOfTheDay: 0
     fishTypes: []
   currentLevel: 1
   worldMin: {x: -10, y: -5}
   worldMax: {x: 10, y: 5}
+  fullPanel: {fileID: 898442880}
+  fishImage: {fileID: 1047193420}
+  minimizedView: {fileID: 922161215}
+  miniFishImage: {fileID: 1003177398}
+  counterText: {fileID: 778900870}
+  wanderSprite: {fileID: 8966945178157639174, guid: ba507441ecc70bc418073ee8b9253956, type: 3}
+  traverseSprite: {fileID: -722958855750563725, guid: d4c40b57bf85382469d2d278710afd41, type: 3}
+  crabSprite: {fileID: -8781757214100938709, guid: 09570fe2e10002d46b44afcfb33dee4a, type: 3}
+  octopusSprite: {fileID: -6349360636359246829, guid: e8fd45a4cf952c84ead8d00776f8d6b9, type: 3}
 --- !u!4 &868581432
 Transform:
   m_ObjectHideFlags: 0
@@ -1001,6 +1032,140 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913932254}
   m_CullTransparentMesh: 1
+--- !u!1 &922161215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922161216}
+  - component: {fileID: 922161219}
+  - component: {fileID: 922161218}
+  - component: {fileID: 922161217}
+  m_Layer: 5
+  m_Name: FishOfDayMinimized
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &922161216
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922161215}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 778900869}
+  - {fileID: 1003177397}
+  m_Father: {fileID: 791408975}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 141.75046, y: 31}
+  m_SizeDelta: {x: 100, y: 52.18451}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &922161217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922161215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 922161218}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 868581431}
+        m_TargetAssemblyTypeName: FishSpawner, Assembly-CSharp
+        m_MethodName: OnMaximizeClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &922161218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922161215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &922161219
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922161215}
+  m_CullTransparentMesh: 1
 --- !u!1 &1003177396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,11 +1196,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1005575811}
+  m_Father: {fileID: 922161216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.134003, y: 0}
+  m_AnchoredPosition: {x: 20, y: -2}
   m_SizeDelta: {x: 45.4281, y: 39.5285}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003177398
@@ -1076,83 +1241,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003177396}
   m_CullTransparentMesh: 1
---- !u!1 &1005575810
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1005575811}
-  - component: {fileID: 1005575813}
-  - component: {fileID: 1005575812}
-  m_Layer: 5
-  m_Name: FishOfDayMinimized
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1005575811
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005575810}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 778900869}
-  - {fileID: 1003177397}
-  m_Father: {fileID: 791408975}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 121.8481, y: -216.81}
-  m_SizeDelta: {x: -695.1039, y: -433.63}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1005575812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005575810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1005575813
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005575810}
-  m_CullTransparentMesh: 1
 --- !u!1 &1008547904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1254,7 @@ GameObject:
   - component: {fileID: 1008547905}
   - component: {fileID: 1008547908}
   - component: {fileID: 1008547909}
+  - component: {fileID: 1008547910}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1305,6 +1394,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panSlider: {fileID: 43082792}
   panAmount: 3
+--- !u!114 &1008547910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008547904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1047193418
 GameObject:
   m_ObjectHideFlags: 0
