@@ -34,6 +34,18 @@ public class Fish : MonoBehaviour
     private float crabWalkTimer;
     private int crabWalkDirection = 1;
 
+    private FishSpawner fishSpawner;
+
+    public void SetSpawner(FishSpawner spawner)
+    {
+        fishSpawner = spawner;
+    }
+
+    void OnMouseDown()
+    {
+        fishSpawner?.OnFishClicked(this);
+    }
+
     void Start()
     {
         mainCamera = Camera.main;

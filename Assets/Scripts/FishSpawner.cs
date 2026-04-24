@@ -37,6 +37,13 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private GameObject minimizedView;
     [SerializeField] private Image miniFishImage;
     [SerializeField] private TextMeshProUGUI counterText;
+    [SerializeField] private GameObject backToLighthouse;
+
+    [Header("Catch Panel")]
+    [SerializeField] private GameObject catchPanel;
+    [SerializeField] private Image catchFishImage;
+    [SerializeField] private TextMeshProUGUI catchBioText;
+    [SerializeField] private Button keepButton;
 
     [Header("Sprites")]
     [SerializeField] private Sprite wanderSprite;
@@ -48,9 +55,14 @@ public class FishSpawner : MonoBehaviour
     private int totalTarget;
     private int caughtTarget;
     private Fish.MovementType currentTargetType;
+    private bool catchPanelOpen = false;
+    private Fish pendingFish;
+    private bool levelFinished = false;
 
     void Start()
     {
+        catchPanel.SetActive(false);
+        backToLighthouse.SetActive(false);
         SpawnFishForLevel(currentLevel);
     }
 
@@ -77,7 +89,56 @@ public class FishSpawner : MonoBehaviour
                 SpawnFish(fishType);
     }
 
-    // --- UI ---
+    // --- Catch Panel ---
+
+    public void OnFishClicked(Fish fish)
+    {
+        if (catchPanelOpen) return;
+        if (fullPanel.activeSelf) return;
+
+        pendingFish = fish;
+        catchPanelOpen = true;
+
+        catchFishImage.sprite = GetSprite(fish.GetMovementType());
+        catchBioText.text = GetBio(fish.GetMovementType());
+        keepButton.gameObject.SetActive(fish.GetMovementType() == currentTargetType);
+
+        catchPanel.SetActive(true);
+        fish.gameObject.SetActive(false);
+    }
+
+    public void OnRelease()
+    {
+        if (pendingFish != null)
+            pendingFish.gameObject.SetActive(true);
+        catchPanel.SetActive(false);
+        catchPanelOpen = false;
+        pendingFish = null;
+    }
+
+    public void OnKeep()
+    {
+        if (pendingFish != null)
+            Destroy(pendingFish.gameObject);
+        RegisterCatch(currentTargetType);
+        catchPanel.SetActive(false);
+        catchPanelOpen = false;
+        pendingFish = null;
+    }
+
+    string GetBio(Fish.MovementType type)
+    {
+        return type switch
+        {
+            Fish.MovementType.Wander   => "bio: make me into a fish stick",
+            Fish.MovementType.Traverse => "bio: no thoughts, head full of bubbles",
+            Fish.MovementType.Crab     => "bio: i taste great in chowder",
+            Fish.MovementType.Octopus  => "bio:  i definitely have more heart than ur job interviewer",
+            _                          => "Unknown creature."
+        };
+    }
+
+    // --- Fish of the Day UI ---
 
     void InitializeUI(Fish.MovementType targetType, int total)
     {
@@ -102,11 +163,13 @@ public class FishSpawner : MonoBehaviour
 
     public void OnMaximizeClicked()
     {
-        fullPanel.SetActive(true);
-        minimizedView.SetActive(false);
+        if (!levelFinished){
+            fullPanel.SetActive(true);
+            minimizedView.SetActive(false);
+        }
     }
 
-    public void RegisterCatch(Fish.MovementType caughtType)
+    void RegisterCatch(Fish.MovementType caughtType)
     {
         if (caughtType != currentTargetType) return;
         caughtTarget = Mathf.Min(caughtTarget + 1, totalTarget);
@@ -116,6 +179,12 @@ public class FishSpawner : MonoBehaviour
     void UpdateCounter()
     {
         counterText.text = $"{caughtTarget}/{totalTarget}";
+        if (caughtTarget==totalTarget){
+            levelFinished = true;
+            minimizedView.SetActive(false);
+            backToLighthouse.SetActive(true);
+            fullPanel.SetActive(false);
+        }
     }
 
     Sprite GetSprite(Fish.MovementType type)
@@ -136,7 +205,6 @@ public class FishSpawner : MonoBehaviour
     {
         Vector2 min = worldMin + Vector2.one * padding;
         Vector2 max = worldMax - Vector2.one * padding;
-
         float sliderOffset = 1.0f;
 
         if (movementType == Fish.MovementType.Crab)
@@ -158,5 +226,6 @@ public class FishSpawner : MonoBehaviour
         fish.SetStats(config.swimSpeed, config.fleeRadius, config.fleeSpeed);
         fish.SetWorldBounds(worldMin, worldMax);
         fish.SetSprite(GetSprite(config.movementType));
+        fish.SetSpawner(this); // give each fish a reference back to spawner
     }
 }
