@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using TMPro;
 
 [System.Serializable]
@@ -26,7 +27,6 @@ public class FishSpawner : MonoBehaviour
     [Header("Fish")]
     [SerializeField] private GameObject fishPrefab;
     [SerializeField] private LevelConfig[] levels;
-    [SerializeField] private int currentLevel = 1;
 
     [Header("World Bounds")]
     [SerializeField] private Vector2 worldMin = new Vector2(-10f, -5f);
@@ -34,12 +34,14 @@ public class FishSpawner : MonoBehaviour
 
     [Header("Ocean UI")]
     [SerializeField] private GameObject fullPanel;
+    [SerializeField] private GameObject cookedPanel;
     [SerializeField] private Image fishImage;
     [SerializeField] private GameObject minimizedView;
     [SerializeField] private Image miniFishImage;
     [SerializeField] private TextMeshProUGUI counterText;
     [SerializeField] private GameObject backToLighthouse;
     [SerializeField] private GameObject cookedMessage;
+    [SerializeField] private GameObject slider;
 
     [Header("Catch Panel")]
     [SerializeField] private GameObject catchPanel;
@@ -52,6 +54,11 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private Sprite traverseSprite;
     [SerializeField] private Sprite crabSprite;
     [SerializeField] private Sprite octopusSprite;
+    [SerializeField] private Sprite emptySprite;
+
+    [Header("Ending")]
+    [SerializeField] private GameObject fadeInButton;
+    [SerializeField] private GameObject endingText;
 
     private float padding = 0.5f;
     private int totalTarget;
@@ -60,19 +67,34 @@ public class FishSpawner : MonoBehaviour
     private bool catchPanelOpen = false;
     private Fish pendingFish;
     private bool levelFinished = false;
+    private bool fadeStarted = false;
+    public static int currentLevel = 0;
 
     void Start()
     {
         catchPanel.SetActive(false);
         backToLighthouse.SetActive(false);
-        minimizedView.SetActive(false);
-        if (currentLevel < 5) {
-            cookedMessage.SetActive(false);
+        cookedMessage.SetActive(false);
+        cookedPanel.SetActive(false);
+        fadeInButton.SetActive(false);
+        endingText.SetActive(false);
+        if (currentLevel < 5){
             SpawnFishForLevel(currentLevel);
         }
         else{
+            LevelConfig config = System.Array.Find(levels, l => l.level == currentLevel);
+            totalTarget = 1;
+            caughtTarget = 0;
+
+            Sprite targetSprite = GetSprite(config.fishOfTheDay);
+            fishImage.sprite = targetSprite;
+            miniFishImage.sprite = targetSprite;
+
+            cookedPanel.SetActive(true);
             fullPanel.SetActive(false);
-            cookedMessage.SetActive(true);
+            minimizedView.SetActive(false);
+
+            UpdateCounter();
         }
     }
 
@@ -175,16 +197,64 @@ public class FishSpawner : MonoBehaviour
 
     public void OnMinimizeClicked()
     {
-        fullPanel.SetActive(false);
-        minimizedView.SetActive(true);
+        if (currentLevel < 5){
+            fullPanel.SetActive(false);
+            minimizedView.SetActive(true);
+        }
+        else{
+            cookedPanel.SetActive(false);
+            minimizedView.SetActive(true);
+            if (!fadeStarted){
+                fadeStarted = true;
+                StartCoroutine(FadeInButton());
+            }
+        }
     }
 
     public void OnMaximizeClicked()
     {
         if (!levelFinished){
-            fullPanel.SetActive(true);
-            minimizedView.SetActive(false);
+            if (currentLevel < 5){
+                fullPanel.SetActive(true);
+                minimizedView.SetActive(false);
+            }
+            else if (!fadeStarted){
+                cookedPanel.SetActive(true);
+                minimizedView.SetActive(false);
+            }
         }
+    }
+
+    IEnumerator FadeInButton()
+    {
+        fadeInButton.SetActive(true);
+        CanvasGroup cg = fadeInButton.GetComponent<CanvasGroup>();
+        if (cg == null) cg = fadeInButton.AddComponent<CanvasGroup>();
+
+        cg.alpha = 0f;
+        float duration = 5f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        cg.alpha = 1f;
+    }
+
+    public void OnEndingButtonClicked()
+    {
+        // hide everything
+        fadeInButton.SetActive(false);
+        minimizedView.SetActive(false);
+        cookedPanel.SetActive(false);
+        backToLighthouse.SetActive(false);
+        slider.SetActive(false);
+
+        // show ending text
+        endingText.SetActive(true);
     }
 
     void RegisterCatch(Fish.MovementType caughtType)
@@ -213,6 +283,7 @@ public class FishSpawner : MonoBehaviour
             Fish.MovementType.Traverse => traverseSprite,
             Fish.MovementType.Crab     => crabSprite,
             Fish.MovementType.Octopus  => octopusSprite,
+            Fish.MovementType.Empty  => emptySprite,
             _                          => null
         };
     }
