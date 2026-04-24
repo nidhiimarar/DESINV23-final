@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3076392914235964480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5906628293839604329}
+  - component: {fileID: 6691178951277183529}
+  m_Layer: 0
+  m_Name: FishManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5906628293839604329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076392914235964480}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6691178951277183529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076392914235964480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4474a043fa855bc44a3f87d50d1bf165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishPrefab: {fileID: 5919853423919144191, guid: c6ad4af1dd20c76418a2cb488a2860eb, type: 3}
+  levels:
+  - level: 1
+    fishOfTheDay: 2
+    fishTypes:
+    - movementType: 0
+      count: 5
+      swimSpeed: 2
+      fleeRadius: 2
+      fleeSpeed: 3.5
+    - movementType: 1
+      count: 5
+      swimSpeed: 2
+      fleeRadius: 2
+      fleeSpeed: 3.5
+    - movementType: 2
+      count: 5
+      swimSpeed: 2
+      fleeRadius: 1
+      fleeSpeed: 3.5
+    - movementType: 3
+      count: 5
+      swimSpeed: 2
+      fleeRadius: 1
+      fleeSpeed: 3.5
+  - level: 2
+    fishOfTheDay: 0
+    fishTypes:
+    - movementType: 0
+      count: 0
+      swimSpeed: 0
+      fleeRadius: 0
+      fleeSpeed: 0
+    - movementType: 0
+      count: 0
+      swimSpeed: 0
+      fleeRadius: 0
+      fleeSpeed: 0
+    - movementType: 0
+      count: 0
+      swimSpeed: 0
+      fleeRadius: 0
+      fleeSpeed: 0
+  - level: 3
+    fishOfTheDay: 0
+    fishTypes:
+    - movementType: 0
+      count: 0
+      swimSpeed: 0
+      fleeRadius: 0
+      fleeSpeed: 0
+  - level: 4
+    fishOfTheDay: 0
+    fishTypes: []
+  currentLevel: 1
+  worldMin: {x: -10, y: -5}
+  worldMax: {x: 10, y: 5}
+  fullPanel: {fileID: 0}
+  fishImage: {fileID: 0}
+  minimizedView: {fileID: 0}
+  miniFishImage: {fileID: 0}
+  counterText: {fileID: 0}
+  backToLighthouse: {fileID: 0}
+  catchPanel: {fileID: 0}
+  catchFishImage: {fileID: 0}
+  catchBioText: {fileID: 0}
+  keepButton: {fileID: 0}
+  wanderSprite: {fileID: 8966945178157639174, guid: ba507441ecc70bc418073ee8b9253956, type: 3}
+  traverseSprite: {fileID: -722958855750563725, guid: d4c40b57bf85382469d2d278710afd41, type: 3}
+  crabSprite: {fileID: -8781757214100938709, guid: 09570fe2e10002d46b44afcfb33dee4a, type: 3}
+  octopusSprite: {fileID: -6349360636359246829, guid: e8fd45a4cf952c84ead8d00776f8d6b9, type: 3}

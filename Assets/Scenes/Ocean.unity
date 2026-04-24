@@ -353,7 +353,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 868581431}
         m_TargetAssemblyTypeName: FishSpawner, Assembly-CSharp
-        m_MethodName: OnMaximizeClicked
+        m_MethodName: LeaveLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1120,121 +1120,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846522727}
   m_CullTransparentMesh: 1
---- !u!1 &868581430
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 868581432}
-  - component: {fileID: 868581431}
-  m_Layer: 0
-  m_Name: FishManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &868581431
+--- !u!114 &868581431 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+  m_PrefabInstance: {fileID: 5456123501343731949}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868581430}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4474a043fa855bc44a3f87d50d1bf165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 5919853423919144191, guid: c6ad4af1dd20c76418a2cb488a2860eb, type: 3}
-  levels:
-  - level: 1
-    fishOfTheDay: 2
-    fishTypes:
-    - movementType: 0
-      count: 5
-      swimSpeed: 2
-      fleeRadius: 2
-      fleeSpeed: 3.5
-    - movementType: 1
-      count: 5
-      swimSpeed: 2
-      fleeRadius: 2
-      fleeSpeed: 3.5
-    - movementType: 2
-      count: 5
-      swimSpeed: 2
-      fleeRadius: 1
-      fleeSpeed: 3.5
-    - movementType: 3
-      count: 5
-      swimSpeed: 2
-      fleeRadius: 1
-      fleeSpeed: 3.5
-  - level: 2
-    fishOfTheDay: 0
-    fishTypes:
-    - movementType: 0
-      count: 0
-      swimSpeed: 0
-      fleeRadius: 0
-      fleeSpeed: 0
-    - movementType: 0
-      count: 0
-      swimSpeed: 0
-      fleeRadius: 0
-      fleeSpeed: 0
-    - movementType: 0
-      count: 0
-      swimSpeed: 0
-      fleeRadius: 0
-      fleeSpeed: 0
-  - level: 3
-    fishOfTheDay: 0
-    fishTypes:
-    - movementType: 0
-      count: 0
-      swimSpeed: 0
-      fleeRadius: 0
-      fleeSpeed: 0
-  - level: 4
-    fishOfTheDay: 0
-    fishTypes: []
-  currentLevel: 1
-  worldMin: {x: -10, y: -5}
-  worldMax: {x: 10, y: 5}
-  fullPanel: {fileID: 898442880}
-  fishImage: {fileID: 1047193420}
-  minimizedView: {fileID: 922161215}
-  miniFishImage: {fileID: 1003177398}
-  counterText: {fileID: 778900870}
-  backToLighthouse: {fileID: 153149380}
-  catchPanel: {fileID: 41932844}
-  catchFishImage: {fileID: 1735776290}
-  catchBioText: {fileID: 1607327560}
-  keepButton: {fileID: 2082025900}
-  wanderSprite: {fileID: 8966945178157639174, guid: ba507441ecc70bc418073ee8b9253956, type: 3}
-  traverseSprite: {fileID: -722958855750563725, guid: d4c40b57bf85382469d2d278710afd41, type: 3}
-  crabSprite: {fileID: -8781757214100938709, guid: 09570fe2e10002d46b44afcfb33dee4a, type: 3}
-  octopusSprite: {fileID: -6349360636359246829, guid: e8fd45a4cf952c84ead8d00776f8d6b9, type: 3}
---- !u!4 &868581432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868581430}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &898442880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,11 +2878,256 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5456123501343731949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3076392914235964480, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_Name
+      value: FishManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906628293839604329, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: fishImage
+      value: 
+      objectReference: {fileID: 1047193420}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: fullPanel
+      value: 
+      objectReference: {fileID: 898442880}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: catchPanel
+      value: 
+      objectReference: {fileID: 41932844}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: keepButton
+      value: 
+      objectReference: {fileID: 2082025900}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: counterText
+      value: 
+      objectReference: {fileID: 778900870}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: catchBioText
+      value: 
+      objectReference: {fileID: 1607327560}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: miniFishImage
+      value: 
+      objectReference: {fileID: 1003177398}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: minimizedView
+      value: 
+      objectReference: {fileID: 922161215}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: catchFishImage
+      value: 
+      objectReference: {fileID: 1735776290}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: backToLighthouse
+      value: 
+      objectReference: {fileID: 153149380}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[0].fishOfTheDay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishOfTheDay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishOfTheDay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[0].fishTypes.Array.data[0].count
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[0].fishTypes.Array.data[1].count
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[0].fishTypes.Array.data[2].count
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[0].fishTypes.Array.data[3].count
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[0].count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[1].count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[2].count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[0].count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[1].count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishTypes.Array.data[0].count
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[0].fleeSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[0].swimSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[1].fleeSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[1].swimSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[2].fleeSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[2].swimSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[0].fleeSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[0].swimSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[1].fleeSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[1].swimSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishTypes.Array.data[0].fleeSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishTypes.Array.data[0].swimSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[0].fleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[1].fleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[2].fleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[0].fleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[1].fleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishTypes.Array.data[0].fleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[1].movementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[1].fishTypes.Array.data[2].movementType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[2].fishTypes.Array.data[1].movementType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[3].fishTypes.Array.data[0].movementType
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1008547907}
   - {fileID: 2082892874}
-  - {fileID: 868581432}
+  - {fileID: 5456123501343731949}
   - {fileID: 791408975}

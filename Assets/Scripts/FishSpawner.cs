@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 [System.Serializable]
@@ -64,6 +65,15 @@ public class FishSpawner : MonoBehaviour
         catchPanel.SetActive(false);
         backToLighthouse.SetActive(false);
         SpawnFishForLevel(currentLevel);
+    }
+
+    public void LoadLevel(int level){
+        currentLevel = level;
+        //Start();
+    }
+
+    public void LeaveLevel(){
+        SceneManager.LoadScene("Lighthouse");
     }
 
     public void SpawnFishForLevel(int level)
