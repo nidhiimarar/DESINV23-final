@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 [System.Serializable]
@@ -31,13 +32,14 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private Vector2 worldMin = new Vector2(-10f, -5f);
     [SerializeField] private Vector2 worldMax = new Vector2(10f, 5f);
 
-    [Header("Fish of the Day UI")]
+    [Header("Ocean UI")]
     [SerializeField] private GameObject fullPanel;
     [SerializeField] private Image fishImage;
     [SerializeField] private GameObject minimizedView;
     [SerializeField] private Image miniFishImage;
     [SerializeField] private TextMeshProUGUI counterText;
     [SerializeField] private GameObject backToLighthouse;
+    [SerializeField] private GameObject cookedMessage;
 
     [Header("Catch Panel")]
     [SerializeField] private GameObject catchPanel;
@@ -63,7 +65,23 @@ public class FishSpawner : MonoBehaviour
     {
         catchPanel.SetActive(false);
         backToLighthouse.SetActive(false);
-        SpawnFishForLevel(currentLevel);
+        minimizedView.SetActive(false);
+        if (currentLevel < 5) {
+            cookedMessage.SetActive(false);
+            SpawnFishForLevel(currentLevel);
+        }
+        else{
+            fullPanel.SetActive(false);
+            cookedMessage.SetActive(true);
+        }
+    }
+
+    public void LoadLevel(int level){
+        currentLevel = level;
+    }
+
+    public void LeaveLevel(){
+        SceneManager.LoadScene("Lighthouse");
     }
 
     public void SpawnFishForLevel(int level)

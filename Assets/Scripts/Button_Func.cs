@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Button_Func : MonoBehaviour
 {
+    [SerializeField] public FishSpawner fs;
+    private static int currentLevel = 1;
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Lighthouse");
@@ -10,6 +13,8 @@ public class Button_Func : MonoBehaviour
 
     public void ToTheOcean()
     {
+        fs.LoadLevel(currentLevel);
+        currentLevel++;
         SceneManager.LoadScene("Ocean");
     }
 
