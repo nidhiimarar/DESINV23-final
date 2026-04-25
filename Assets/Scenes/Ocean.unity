@@ -4167,6 +4167,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
+      propertyPath: levels.Array.data[0].fishTypes.Array.data[3].fleeRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[0].fleeRadius
       value: 2
       objectReference: {fileID: 0}
