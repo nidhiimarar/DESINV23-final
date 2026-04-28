@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Button_Func : MonoBehaviour
+public class LighthouseManager : MonoBehaviour
 {
     public void PlayGame()
     {

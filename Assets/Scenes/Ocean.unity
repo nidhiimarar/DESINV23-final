@@ -4040,11 +4040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[0].fishOfTheDay
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishOfTheDay
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[3].fishOfTheDay
@@ -4200,7 +4200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[1].movementType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[2].movementType
