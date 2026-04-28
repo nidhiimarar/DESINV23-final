@@ -218,7 +218,7 @@ public class FishSpawner : MonoBehaviour
                 fullPanel.SetActive(true);
                 minimizedView.SetActive(false);
             }
-            else if (!fadeStarted){
+            else{
                 cookedPanel.SetActive(true);
                 minimizedView.SetActive(false);
             }
