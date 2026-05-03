@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ButtonSound : MonoBehaviour
 {
-    public AudioClip clickSound;
+    //public AudioClip clickSound;
     private AudioSource audioSource;
 
     void Start()
@@ -12,6 +12,6 @@ public class ButtonSound : MonoBehaviour
 
     public void PlayClick()
     {
-        audioSource.PlayOneShot(clickSound);
+        audioSource.Play();
     }
 }
