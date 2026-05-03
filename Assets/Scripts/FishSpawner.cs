@@ -55,11 +55,18 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private Sprite crabSprite;
     [SerializeField] private Sprite octopusSprite;
     [SerializeField] private Sprite emptySprite;
-
+    [SerializeField] private Sprite octopusAltSprite;
+    
     [Header("Ending")]
     [SerializeField] private GameObject fadeInButton;
     [SerializeField] private GameObject endingText;
 
+    [SerializeField] private RuntimeAnimatorController octopusAnimator;
+    [SerializeField] private RuntimeAnimatorController octopusAnimatorAlt;
+    
+    [SerializeField] private Transform cameraTarget; // where you want the camera to move to
+    [SerializeField] private float cameraMoveSpeed = 9f;
+    
     private float padding = 0.5f;
     private int totalTarget;
     private int caughtTarget;
@@ -138,8 +145,10 @@ public class FishSpawner : MonoBehaviour
 
         pendingFish = fish;
         catchPanelOpen = true;
-
-        catchFishImage.sprite = GetSprite(fish.GetMovementType());
+        if (fish.GetMovementType() == Fish.MovementType.Octopus && (currentLevel == 3 || currentLevel == 4))
+            catchFishImage.sprite = octopusAltSprite;
+        else
+            catchFishImage.sprite = GetSprite(fish.GetMovementType());
         catchBioText.text = GetBio(fish.GetMovementType());
         keepButton.gameObject.SetActive(fish.GetMovementType() == currentTargetType);
 
@@ -170,10 +179,13 @@ public class FishSpawner : MonoBehaviour
     {
         return type switch
         {
-            Fish.MovementType.Wander   => "bio: make me into a fish stick",
-            Fish.MovementType.Traverse => "bio: no thoughts, head full of bubbles",
-            Fish.MovementType.Crab     => "bio: i taste great in chowder",
-            Fish.MovementType.Octopus  => "bio:  i definitely have more heart than ur job interviewer",
+            Fish.MovementType.Wander   => "make me into a fish stick",
+            Fish.MovementType.Traverse => "no thoughts, head full of bubbles",
+            Fish.MovementType.Crab     => "i taste great in chowder",
+            Fish.MovementType.Octopus  => (currentLevel == 3 || currentLevel == 4) 
+                ? "it's staring."
+                : "i definitely have more heart than ur job interviewer",
+            
             _                          => "Unknown creature."
         };
     }
@@ -227,6 +239,7 @@ public class FishSpawner : MonoBehaviour
 
     IEnumerator FadeInButton()
     {
+        yield return new WaitForSeconds(10f);
         fadeInButton.SetActive(true);
         CanvasGroup cg = fadeInButton.GetComponent<CanvasGroup>();
         if (cg == null) cg = fadeInButton.AddComponent<CanvasGroup>();
@@ -254,7 +267,25 @@ public class FishSpawner : MonoBehaviour
         slider.SetActive(false);
 
         // show ending text
-        endingText.SetActive(true);
+        StartCoroutine(MoveCamera());
+    }
+    
+    IEnumerator MoveCamera()
+    {
+        Transform cam = Camera.main.transform;
+        Vector3 startPos = cam.position;
+        Vector3 endPos = cameraTarget.position;
+        float elapsed = 0f;
+        float duration = 3f; // how long the move takes
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            cam.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+            yield return null;
+        }
+        cam.position = endPos;
+        FindObjectOfType<OceanBgProgression>().uhOhBigBug();
     }
 
     void RegisterCatch(Fish.MovementType caughtType)
@@ -316,5 +347,15 @@ public class FishSpawner : MonoBehaviour
         fish.SetWorldBounds(worldMin, worldMax);
         fish.SetSprite(GetSprite(config.movementType));
         fish.SetSpawner(this); // give each fish a reference back to spawner
+        
+        if (config.movementType == Fish.MovementType.Octopus)
+        {
+            if (currentLevel == 3 || currentLevel == 4)
+                fish.SetAnimation(octopusAnimatorAlt);
+            else
+                fish.SetAnimation(octopusAnimator);
+        }
+        else
+            fish.SetSprite(GetSprite(config.movementType));
     }
 }

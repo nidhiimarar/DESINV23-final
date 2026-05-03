@@ -41,7 +41,7 @@ public class Fish : MonoBehaviour
     private float octopusBobAmplitude = 0.4f;
     private float octopusBobBaseY = 0f;
     private bool octopusBobBaseSet = false;
-    private const float octopusRestingAlpha = 0.18f;
+    private const float octopusRestingAlpha = 0.05f;
 
     private bool octopusFleeing = false;
     private Vector2 octopusFleeTarget;
@@ -102,6 +102,11 @@ public class Fish : MonoBehaviour
                 col.SetPath(i, points);
             }
         }
+    }
+    
+    public void SetAnimation(RuntimeAnimatorController controller)
+    {
+        GetComponent<Animator>().runtimeAnimatorController = controller;
     }
 
     void Update()
@@ -175,7 +180,7 @@ public class Fish : MonoBehaviour
             octopusOpacityFlickerTimer -= Time.deltaTime;
             if (octopusOpacityFlickerTimer <= 0f)
             {
-                SetAlpha(Random.Range(0f, 1f));
+                SetAlpha(Random.Range(0f, 0.7f));
                 octopusOpacityFlickerTimer = Random.Range(0.03f, 0.12f);
             }
 
