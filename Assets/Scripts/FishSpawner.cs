@@ -12,6 +12,7 @@ public class FishTypeConfig
     public float swimSpeed = 2f;
     public float fleeRadius = 2f;
     public float fleeSpeed = 3.5f;
+    public float clickRadius = 1f; // add this
 }
 
 [System.Serializable]
@@ -145,6 +146,7 @@ public class FishSpawner : MonoBehaviour
 
         pendingFish = fish;
         catchPanelOpen = true;
+        catchFishImage.preserveAspect = true;
         if (fish.GetMovementType() == Fish.MovementType.Octopus && (currentLevel == 3 || currentLevel == 4))
             catchFishImage.sprite = octopusAltSprite;
         else
@@ -199,7 +201,9 @@ public class FishSpawner : MonoBehaviour
 
         Sprite targetSprite = GetSprite(targetType);
         fishImage.sprite = targetSprite;
+        fishImage.preserveAspect = true;
         miniFishImage.sprite = targetSprite;
+        miniFishImage.preserveAspect = true;
 
         fullPanel.SetActive(true);
         minimizedView.SetActive(false);
@@ -339,15 +343,28 @@ public class FishSpawner : MonoBehaviour
     void SpawnFish(FishTypeConfig config)
     {
         Vector2 spawnPos = GetSpawnPosition(config.movementType);
-        GameObject obj = Instantiate(fishPrefab, spawnPos, Quaternion.identity);
+        GameObject obj = Instantiate(fishPrefab, new Vector3(spawnPos.x, spawnPos.y, -1f), Quaternion.identity);
         Fish fish = obj.GetComponent<Fish>();
+        fish.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
         fish.SetMovementType(config.movementType);
         fish.SetStats(config.swimSpeed, config.fleeRadius, config.fleeSpeed);
         fish.SetWorldBounds(worldMin, worldMax);
         fish.SetSprite(GetSprite(config.movementType));
+        fish.GetComponent<CircleCollider2D>().radius = config.clickRadius;
         fish.SetSpawner(this); // give each fish a reference back to spawner
         
+        if (config.movementType == Fish.MovementType.Crab){
+            obj.transform.localScale = new Vector3(0.11f, 0.11f, 0.11f);
+        }
+        if (config.movementType == Fish.MovementType.Traverse){
+            obj.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
+        }
+        if (config.movementType == Fish.MovementType.Wander){
+            obj.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
+        }
+
+
         if (config.movementType == Fish.MovementType.Octopus)
         {
             if (currentLevel == 3 || currentLevel == 4)

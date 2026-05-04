@@ -62,6 +62,11 @@ public class Fish : MonoBehaviour
         fishSpawner?.OnFishClicked(this);
     }
 
+    public void RefreshBounds()
+    {
+        CalculateBounds();
+    }
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -90,18 +95,6 @@ public class Fish : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         GetComponent<SpriteRenderer>().sprite = sprite;
-
-        PolygonCollider2D col = GetComponent<PolygonCollider2D>();
-        if (col != null)
-        {
-            col.pathCount = sprite.GetPhysicsShapeCount();
-            for (int i = 0; i < sprite.GetPhysicsShapeCount(); i++)
-            {
-                var points = new System.Collections.Generic.List<Vector2>();
-                sprite.GetPhysicsShape(i, points);
-                col.SetPath(i, points);
-            }
-        }
     }
     
     public void SetAnimation(RuntimeAnimatorController controller)
@@ -111,7 +104,6 @@ public class Fish : MonoBehaviour
 
     void Update()
     {
-        CalculateBounds();
 
         Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         float distToMouse = Vector2.Distance(transform.position, mouseWorld);
@@ -348,7 +340,7 @@ public class Fish : MonoBehaviour
     void MoveTowards(Vector2 target, float speed)
     {
         Vector2 newPos = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        transform.position = newPos;
+        transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
     }
 
     void CalculateBounds()

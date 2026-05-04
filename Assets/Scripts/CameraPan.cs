@@ -7,16 +7,19 @@ public class CameraPan : MonoBehaviour
     [SerializeField] private float panAmount = 3f; // how far left/right camera can travel
 
     private Vector3 basePosition;
+    private Fish[] allFish;
 
     void Start()
     {
-        basePosition = transform.position; // store camera's original center position
+        basePosition = transform.position;
         panSlider.onValueChanged.AddListener(OnSliderChanged);
+        allFish = FindObjectsOfType<Fish>();
     }
 
     void OnSliderChanged(float value)
     {
-        // value is -1 to 1, multiply by panAmount to get world offset
         transform.position = new Vector3(basePosition.x + value * panAmount, basePosition.y, basePosition.z);
+        foreach (Fish fish in allFish)
+            fish.RefreshBounds();
     }
 }
