@@ -16,8 +16,11 @@ public class LighthouseManager : MonoBehaviour
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private Button closeButton;
+    [SerializeField] private TMP_FontAsset defaultFont;
+    [SerializeField] private TMP_FontAsset altFont;
 
     private bool infoPanelOpen = false;
+    private Dictionary<string, TMP_FontAsset> objectFonts = new Dictionary<string, TMP_FontAsset>();
 
     private Dictionary<string, string> objectTexts = new Dictionary<string, string>()
     {
@@ -73,6 +76,11 @@ Studies show that 61% of bears that attacked humans were estimated to be in belo
 
     void Awake()
     {
+        objectFonts["stage0_symptoms"] = altFont;
+        objectFonts["stage1_symptoms"] = altFont;
+        objectFonts["stage2_symptoms"] = altFont;
+        objectFonts["stage3_symptoms"] = altFont;
+        objectFonts["stage4_symptoms"] = altFont;
         popUpCanvas.SetActive(false);
         infoPanelOpen = false;
         infoText.color = Color.black;
@@ -92,11 +100,12 @@ Studies show that 61% of bears that attacked humans were estimated to be in belo
     public void OnObjectClicked(string objectID)
     {
         if (infoPanelOpen) return;
-        
+
         string key = $"stage{FishSpawner.currentLevel}_{objectID}";
         if (!objectTexts.ContainsKey(key)) return;
 
         infoText.text = objectTexts[key];
+        infoText.font = objectFonts.ContainsKey(key) ? objectFonts[key] : defaultFont;
         popUpCanvas.SetActive(true);
         infoPanelOpen = true;
     }
