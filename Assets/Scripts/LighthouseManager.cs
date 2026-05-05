@@ -1,11 +1,106 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class LighthouseManager : MonoBehaviour
 {
-    public void PlayGame()
+    [Header("Stages")]
+    [SerializeField] private GameObject stage1;
+    [SerializeField] private GameObject stage2;
+    [SerializeField] private GameObject stage3;
+
+    [Header("Info Panel")]
+    [SerializeField] private GameObject popUpCanvas;
+    [SerializeField] private GameObject infoPanel;
+    [SerializeField] private TextMeshProUGUI infoText;
+    [SerializeField] private Button closeButton;
+
+    private bool infoPanelOpen = false;
+
+    private Dictionary<string, string> objectTexts = new Dictionary<string, string>()
     {
-        SceneManager.LoadScene("Lighthouse");
+        { "stage0_testresults", @"Test results: subject is no bueno" },
+        { "stage0_symptoms", @"Symptoms: coughing, dizziness, noticable decrease in aura" },
+        { "stage0_checklist", @"Recipe for Ozempic:
+        -crab legs" },
+
+        { "stage1_capelore", @"Lore: mom said to go to med school but i didn't wanna so here i am :D" },  
+        { "stage1_testresults", @"Test results: subject is not very sigma :(" }, 
+        { "stage1_symptoms", @"Symptoms: coughing, dizziness, noticable decrease in aura, unable to understand current memes" }, 
+        { "stage1_checklist", @"Recipe for Ozempic:
+        -crab legs
+        -fish fins" },
+
+        { "stage2_capelore", @"Lore: mom said to go to med school but i didn't wanna so here i am :D" },  
+        { "stage2_testresults", @"Test results: subject is not very sigma :(" }, 
+        { "stage2_symptoms", @"Symptoms: coughing, dizziness, noticable decrease in aura, unable to understand current memes" }, 
+        { "stage2_oceanarticle", @"FIHHHHHHHH" },
+        { "stage2_polarbears", @"breaking news: idiotic humans distrupt bears nap time" },
+        { "stage2_checklist", @"Recipe for Ozempic:
+        -crab legs
+        -fish fins
+        -fish eyes" },
+
+        { "stage3_capelore", @"Lore: mom said to go to med school but i didn't wanna so here i am :D" },  
+        { "stage3_testresults", @"Test results: subject is cooked X_X" }, 
+        { "stage3_symptoms", @"Symptoms: coughing, dizziness, noticable decrease in aura, unable to understand current memes, OH SHIT THERES BLOOD AHHHH" }, 
+        { "stage3_oceanarticle", @"FIHHHHHHHH" },
+        { "stage3_polarbears", @"breaking news: idiotic humans distrupt bears nap time" },
+        { "stage3_checklist", @"Recipe for Ozempic:
+        -crab legs
+        -fish fins
+        -fish eyes
+        -octopus tentacles" },
+
+        { "stage4_capelore", @"Lore: mom said to go to med school but i didn't wanna so here i am :D" },  
+        { "stage4_testresults", @"Test results: subject is cooked X_X" }, 
+        { "stage4_symptoms", @"Symptoms: coughing, dizziness, noticable decrease in aura, unable to understand current memes, OH SHIT THERES BLOOD AHHHH" }, 
+        { "stage4_oceanarticle", @"FIHHHHHHHH" },
+        { "stage4_polarbears", @"breaking news: idiotic humans distrupt bears nap time" },
+        { "stage4_checklist", @"Recipe for Ozempic:
+        -crab legs
+        -fish fins
+        -fish eyes
+        -octopus tentacles
+        -a miracle as rare as getting an internship at Berkeley" }, 
+    };
+
+    void Awake()
+    {
+        popUpCanvas.SetActive(false);
+        infoPanelOpen = false;
+        infoText.color = Color.black;
+        stage1.SetActive(false);
+        stage2.SetActive(false);
+        stage3.SetActive(false);
+
+        if (stage1 != null) stage1.SetActive(FishSpawner.currentLevel == 0);
+        if (stage2 != null) stage2.SetActive(FishSpawner.currentLevel == 1);
+        if (stage3 != null) stage3.SetActive(FishSpawner.currentLevel >= 2);
+
+        closeButton.onClick.AddListener(OnCloseInfo);
+    }
+
+    // Hook this up in each Button's OnClick in the inspector.
+    // Pass the flavor text as the string argument.
+    public void OnObjectClicked(string objectID)
+    {
+        if (infoPanelOpen) return;
+        
+        string key = $"stage{FishSpawner.currentLevel}_{objectID}";
+        if (!objectTexts.ContainsKey(key)) return;
+
+        infoText.text = objectTexts[key];
+        popUpCanvas.SetActive(true);
+        infoPanelOpen = true;
+    }
+
+    public void OnCloseInfo()
+    {
+        popUpCanvas.SetActive(false);
+        infoPanelOpen = false;
     }
 
     public void ToTheOcean()
@@ -17,10 +112,9 @@ public class LighthouseManager : MonoBehaviour
     public void QuitGame()
     {
         #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
         #else
-                Application.Quit();
+            Application.Quit();
         #endif
     }
-
 }
