@@ -358,10 +358,10 @@ public class FishSpawner : MonoBehaviour
             obj.transform.localScale = new Vector3(0.11f, 0.11f, 0.11f);
         }
         if (config.movementType == Fish.MovementType.Traverse){
-            obj.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
+            obj.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
         }
         if (config.movementType == Fish.MovementType.Wander){
-            obj.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
+            obj.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
         }
 
 
