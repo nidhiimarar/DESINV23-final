@@ -12274,6 +12274,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1662093218}
     - target: {fileID: 34667336563099359, guid: b5f5ae4f28da7214c872ee27e1234417, type: 3}
+      propertyPath: altFont
+      value: 
+      objectReference: {fileID: 11400000, guid: a47a426915d1e4f5bbcbb1a768ecb328, type: 2}
+    - target: {fileID: 34667336563099359, guid: b5f5ae4f28da7214c872ee27e1234417, type: 3}
       propertyPath: infoText
       value: 
       objectReference: {fileID: 1944513215}
@@ -12285,6 +12289,10 @@ PrefabInstance:
       propertyPath: closeButton
       value: 
       objectReference: {fileID: 1268380443}
+    - target: {fileID: 34667336563099359, guid: b5f5ae4f28da7214c872ee27e1234417, type: 3}
+      propertyPath: defaultFont
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 34667336563099359, guid: b5f5ae4f28da7214c872ee27e1234417, type: 3}
       propertyPath: popUpCanvas
       value: 
