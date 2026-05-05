@@ -37,7 +37,11 @@ public class LighthouseManager : MonoBehaviour
         { "stage2_testresults", @"Test results: subject is not very sigma :(" }, 
         { "stage2_symptoms", @"Symptoms: coughing, dizziness, noticable decrease in aura, unable to understand current memes" }, 
         { "stage2_oceanarticle", @"FIHHHHHHHH" },
-        { "stage2_polarbears", @"breaking news: idiotic humans distrupt bears nap time" },
+        { "stage2_polarbears", @"When Apex Predators Are Starved: A Case Study on Polar Bears
+Along with thinning sea ice, polar bear attacks on humans have been on the rise in recent years. As Earth gets warmer, the sea ice takes longer to solidify with each passing year. Since the large, half-ton bears rely on seals that dwell on the sea ice for food, it's not uncommon for polar bears to go months without eating in the summer. Amidst these bleak conditions, these bears are desperate for alternative food sources.
+It just so happens that less ice brings more humans closer to the bears, including those with less bear experience – more tourists, more industries, more shipping. And just like that,  we have all the ingredients for increased polar bear-human contact and conflict.
+Studies show that 61% of bears that attacked humans were estimated to be in below-average body condition. Furthermore, 88% percent of attacks occurred between July and December since 2020, when the sea ice usually covers the smallest area. This is a 20% increase from attacks that occurred at the same time of year between 1870 to 2014.
+" },
         { "stage2_checklist", @"Recipe for Ozempic:
         -crab legs
         -fish fins
