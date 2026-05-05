@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0408b970024c540f5a2c7e0133c593af
+guid: 4fb4ae65ed4c1443c91ad1e5e7da5b7e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8966927225032634485
-    second: IMG_7657_0
+      213: -6183461373484462085
+    second: Lighthouse_Stage2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_7657_0
+      name: Lighthouse_Stage2_0
       rect:
         serializedVersion: 2
-        x: 142
-        y: 127
-        width: 1459
-        height: 1103
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8f862992331f8380800000000000000
-      internalID: -8966927225032634485
+      spriteID: bff0c1764aeef2aa0800000000000000
+      internalID: -6183461373484462085
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_7657_0: -8966927225032634485
+      Lighthouse_Stage2_0: -6183461373484462085
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
