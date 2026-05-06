@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 
 public class LighthouseManager : MonoBehaviour
 {
+    private bool hasTurnedAround = false;
+    
     [Header("Stages")]
     [SerializeField] private GameObject stage1;
     [SerializeField] private GameObject stage2;
@@ -20,6 +23,9 @@ public class LighthouseManager : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private TMP_FontAsset defaultFont;
     [SerializeField] private TMP_FontAsset altFont;
+    [SerializeField] private GameObject turnAround3;
+    [SerializeField] private GameObject turnAround4;
+    [SerializeField] private GameObject turnAround5;
 
     private bool infoPanelOpen = false;
     private Dictionary<string, TMP_FontAsset> objectFonts = new Dictionary<string, TMP_FontAsset>();
@@ -197,6 +203,9 @@ Not yet.
         stage3.SetActive(false);
         stage4.SetActive(false);
         stage5.SetActive(false);
+        turnAround3.SetActive(false);
+        turnAround4.SetActive(false);
+        turnAround5.SetActive(false);
 
         if (stage1 != null) stage1.SetActive(FishSpawner.currentLevel == 0);
         if (stage2 != null) stage2.SetActive(FishSpawner.currentLevel == 1);
@@ -232,10 +241,59 @@ Not yet.
         infoPanelOpen = false;
     }
 
+    public void TurnAroundLighthouse3()
+    {
+        if (hasTurnedAround == false)
+        {
+            Debug.Log("TurnAround clicked!");
+            turnAround3.SetActive(true);
+            hasTurnedAround = true;
+        }
+        else
+        {
+            Debug.Log("TurnAround clicked!");
+            turnAround3.SetActive(false);
+            hasTurnedAround = false;
+        }
+    }
+
+    public void TurnAroundLigthouse4()
+    {
+        if (hasTurnedAround == false)
+        {
+            Debug.Log("TurnAround clicked!");
+            turnAround4.SetActive(true);
+            hasTurnedAround = true;
+        }
+        else
+        {
+            Debug.Log("TurnAround clicked!");
+            turnAround4.SetActive(false);
+            hasTurnedAround = false;
+        }  
+    }
+
+    public void TurnAroundLighthouse5()
+    {
+        if (hasTurnedAround == false)
+        {
+            Debug.Log("TurnAround clicked!");
+            turnAround5.SetActive(true);
+            hasTurnedAround = true;
+        }
+        else
+        {
+            Debug.Log("TurnAround clicked!");
+            turnAround5.SetActive(false);
+            hasTurnedAround = false;
+        }  
+    }
+    
     public void ToTheOcean()
     {
         FishSpawner.currentLevel++;
         revampedAudio.Instance.UpdateMusic();
+        hasTurnedAround = false;
         SceneManager.LoadScene("Ocean");
     }
 
