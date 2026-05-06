@@ -85,6 +85,7 @@ Studies show that 61% of bears that attacked humans were estimated to be in belo
         if (stage3 != null) stage3.SetActive(FishSpawner.currentLevel >= 2);
 
         closeButton.onClick.AddListener(OnCloseInfo);
+        revampedAudio.Instance.UpdateMusic();
     }
 
     // Hook this up in each Button's OnClick in the inspector.
@@ -110,6 +111,7 @@ Studies show that 61% of bears that attacked humans were estimated to be in belo
     public void ToTheOcean()
     {
         FishSpawner.currentLevel++;
+        revampedAudio.Instance.UpdateMusic();
         SceneManager.LoadScene("Ocean");
     }
 

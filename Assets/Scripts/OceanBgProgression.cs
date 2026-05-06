@@ -30,7 +30,7 @@ public class OceanBgProgression : MonoBehaviour
         bugRenderer.color = c;
         bugRenderer.transform.localScale = Vector3.zero;
         bugRenderer.gameObject.SetActive(true);
-        StartCoroutine(FadeAndGrow(bugRenderer, 3f));
+        StartCoroutine(FadeAndGrow(bugRenderer, 2.5f));
     }
 
     IEnumerator FadeAndGrow(SpriteRenderer spriteRenderer, float duration)

@@ -1,20 +1,30 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class revampedAudio : MonoBehaviour
 {
-    // Static instance allows other scripts to access this without a direct reference
     public static revampedAudio Instance;
 
+    [Header("Sources")]
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource musicSource;
+
+    [Header("SFX Clips")]
     [SerializeField] private AudioClip buttonClickClip;
+
+    [Header("Music Clips")]
+    [SerializeField] private AudioClip underwaterMusic;
+    [SerializeField] private AudioClip underwaterQuietMusic;
+    [SerializeField] private AudioClip theEndMusic;
+    [SerializeField] private AudioClip uhOhSpaghettio;
 
     private void Awake()
     {
-        // Singleton Pattern: Ensures only one instance exists
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keeps this object alive between scenes
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -22,50 +32,81 @@ public class revampedAudio : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene loaded: " + scene.name);
+        if (scene.name == "Ocean")
+        {
+            UpdateMusic();
+        }
+        else if (scene.name == "Lighthouse" && FishSpawner.currentLevel == 4)
+        {
+            PlayMusic(theEndMusic);
+            // Do nothing — LighthouseManager handles music via UpdateMusic() in Awake
+        }
+        else
+        {
+            StopMusic();
+        }
+    }
+
+    // --- Music ---
+    public void PlayMusic(AudioClip clip)
+    {
+        if (musicSource == null || clip == null) return;
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    public void StopMusic() => musicSource?.Stop();
+
+    // --- SFX ---
     public void PlayButtonSound()
     {
         if (sfxSource != null && buttonClickClip != null)
-        {
             sfxSource.PlayOneShot(buttonClickClip);
-        }
-        else
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        if (sfxSource != null && clip != null)
+            sfxSource.PlayOneShot(clip);
+    }
+    
+    public void PlayEnding()
+    {
+        if (sfxSource != null && uhOhSpaghettio != null)
         {
-            Debug.LogWarning("SoundManager: Missing AudioSource or Clip!");
+            sfxSource.PlayOneShot(uhOhSpaghettio); 
+            Debug.Log("Button sound played!");
+        }
+            
+    }
+    public void UpdateMusic()
+    {
+        switch (FishSpawner.currentLevel)
+        {
+            case 0:
+                break;
+            case 1:
+            case 2:
+            case 3:
+                PlayMusic(underwaterMusic);
+                break;
+            case 4:
+                PlayMusic(underwaterQuietMusic);
+                break;
+            case 5:
+                PlayMusic(theEndMusic);
+                break;
         }
     }
 }
-
-
-/*using UnityEngine;
-
-public class revampedAudio : MonoBehaviour
-{
-    [SerializeField] public AudioSource audioSource2;
-    public static revampedAudio Instance;
-    private AudioSource audioSource;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-            
-        }
-        else
-        {
-            Destroy(gameObject); // prevent duplicates
-        }
-    }
-
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    public void PlayClick()
-    {
-        Debug.Log("Button clicked!!!!!!!");
-        audioSource.PlayOneShot(audioSource.clip);
-    }
-}*/
