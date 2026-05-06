@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: f7f6e132a9596474c99cb1597bdcfc99
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4494481390687516582
+    second: TutorialChecklist_0
+  - first:
+      213: -3280063572712244307
+    second: TutorialChecklist_1
+  - first:
+      213: -3597481081041543710
+    second: TutorialChecklist_2
+  - first:
+      213: 1756709117656120474
+    second: TutorialChecklist_3
+  - first:
+      213: -6299712518926931456
+    second: TutorialChecklist_4
+  - first:
+      213: -5808838635112016460
+    second: TutorialChecklist_5
+  - first:
+      213: 8220716770803425931
+    second: TutorialChecklist_6
+  - first:
+      213: 3484327492624999398
+    second: TutorialChecklist_7
+  - first:
+      213: -977763272579938592
+    second: TutorialChecklist_8
+  - first:
+      213: -8513228642582612447
+    second: TutorialChecklist_9
+  - first:
+      213: 6181842603992126746
+    second: TutorialChecklist_10
+  - first:
+      213: 6110920660967501379
+    second: TutorialChecklist_11
+  - first:
+      213: 7745315543428619735
+    second: TutorialChecklist_12
+  - first:
+      213: 8293759566699313960
+    second: TutorialChecklist_13
+  - first:
+      213: -7649485189474722544
+    second: TutorialChecklist_14
+  - first:
+      213: -8852508774446738621
+    second: TutorialChecklist_15
+  - first:
+      213: -964750512751339577
+    second: TutorialChecklist_16
+  - first:
+      213: 3311055635781813231
+    second: TutorialChecklist_17
+  - first:
+      213: 6293589494868261258
+    second: TutorialChecklist_18
+  - first:
+      213: 8325711126158392842
+    second: TutorialChecklist_19
+  - first:
+      213: -8144908416949805038
+    second: TutorialChecklist_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TutorialChecklist_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a77885130b9f5e30800000000000000
+      internalID: 4494481390687516582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_1
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 929
+        width: 13
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dabb9c32f8fda72d0800000000000000
+      internalID: -3280063572712244307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_2
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 953
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ed945e540e231ec0800000000000000
+      internalID: -3597481081041543710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_3
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 921
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c359392a5116810800000000000000
+      internalID: 1756709117656120474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_4
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 892
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00a674267dce298a0800000000000000
+      internalID: -6299712518926931456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_5
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 886
+        width: 18
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b55594b90cd26fa0800000000000000
+      internalID: -5808838635112016460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_6
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 915
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82a5da095ad51270800000000000000
+      internalID: 8220716770803425931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_7
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 907
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e36a0fc461da5030800000000000000
+      internalID: 3484327492624999398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_8
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 905
+        width: 18
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e60377eb794e62f0800000000000000
+      internalID: -977763272579938592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_9
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 901
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 126be2397afead980800000000000000
+      internalID: -8513228642582612447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_10
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 894
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15935478115ac550800000000000000
+      internalID: 6181842603992126746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_11
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 883
+        width: 42
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34e209fc6f95ec450800000000000000
+      internalID: 6110920660967501379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_12
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 881
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dddf574373ec7b60800000000000000
+      internalID: 7745315543428619735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_13
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 901
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b3c99326a591370800000000000000
+      internalID: 8293759566699313960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_14
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 877
+        width: 9
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01d5fb6bfb197d590800000000000000
+      internalID: -7649485189474722544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_15
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 871
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343d2181c22952580800000000000000
+      internalID: -8852508774446738621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_16
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 858
+        width: 17
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c7949625848c92f0800000000000000
+      internalID: -964750512751339577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_17
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 862
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe3845ade8b33fd20800000000000000
+      internalID: 3311055635781813231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_18
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 858
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89b0cbfc42575750800000000000000
+      internalID: 6293589494868261258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_19
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 854
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0e3031682eda8370800000000000000
+      internalID: 8325711126158392842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TutorialChecklist_20
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 848
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2102e97c2f877fe80800000000000000
+      internalID: -8144908416949805038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 95f1305b3e4fc4110bd0d54c1f03f3cf
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TutorialChecklist_0: 4494481390687516582
+      TutorialChecklist_1: -3280063572712244307
+      TutorialChecklist_10: 6181842603992126746
+      TutorialChecklist_11: 6110920660967501379
+      TutorialChecklist_12: 7745315543428619735
+      TutorialChecklist_13: 8293759566699313960
+      TutorialChecklist_14: -7649485189474722544
+      TutorialChecklist_15: -8852508774446738621
+      TutorialChecklist_16: -964750512751339577
+      TutorialChecklist_17: 3311055635781813231
+      TutorialChecklist_18: 6293589494868261258
+      TutorialChecklist_19: 8325711126158392842
+      TutorialChecklist_2: -3597481081041543710
+      TutorialChecklist_20: -8144908416949805038
+      TutorialChecklist_3: 1756709117656120474
+      TutorialChecklist_4: -6299712518926931456
+      TutorialChecklist_5: -5808838635112016460
+      TutorialChecklist_6: 8220716770803425931
+      TutorialChecklist_7: 3484327492624999398
+      TutorialChecklist_8: -977763272579938592
+      TutorialChecklist_9: -8513228642582612447
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

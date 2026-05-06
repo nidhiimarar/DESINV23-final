@@ -18,9 +18,12 @@ public class LighthouseManager : MonoBehaviour
 
     [Header("Info Panel")]
     [SerializeField] private GameObject popUpCanvas;
+    [SerializeField] private GameObject fishDiagramCanvas;
     [SerializeField] private GameObject infoPanel;
+    [SerializeField] private GameObject fishDiagramPanel;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button diagramCloseButton;
     [SerializeField] private TMP_FontAsset defaultFont;
     [SerializeField] private TMP_FontAsset altFont;
     [SerializeField] private GameObject turnAround3;
@@ -28,6 +31,7 @@ public class LighthouseManager : MonoBehaviour
     [SerializeField] private GameObject turnAround5;
 
     private bool infoPanelOpen = false;
+    private bool fishDiagramOpen = false;
     private Dictionary<string, TMP_FontAsset> objectFonts = new Dictionary<string, TMP_FontAsset>();
 
     private Dictionary<string, string> objectTexts;
@@ -104,8 +108,8 @@ Not yet.
             -160->147->132->121 lbs
             -fatigue
     " },
-            { "stage0_checklist", @"Recipe for Ozempic:
-            -crab legs" },
+            { "stage0_checklist", @"Ingredients:
+            -crab claws" },
 
             // stage 1
             { "stage1_capelore",    CAPE_LORE_TEXT },
@@ -118,8 +122,8 @@ Not yet.
             -abdominal pain
             everything fucking hurts
             " },
-            { "stage1_checklist", @"Recipe for Ozempic:
-            -crab legs
+            { "stage1_checklist", @"Ingredients:
+            -crab claws
             -fish fins" },
 
             // stage 2
@@ -135,8 +139,8 @@ Not yet.
             -EVERYTHING FUCKING HURTS" },
             { "stage2_oceanarticle",  OCEAN_ARTICLE_TEXT },
             { "stage2_polarbears",    POLAR_BEARS_TEXT },
-            { "stage2_checklist", @"Recipe for Ozempic:
-            -crab legs
+            { "stage2_checklist", @"Ingredients:
+            -crab claws
             -fish fins
             -fish eyes" },
 
@@ -153,8 +157,8 @@ Not yet.
             -EVERYTHING FUCKING HURTS" },
             { "stage3_oceanarticle", OCEAN_ARTICLE_TEXT },
             { "stage3_polarbears",   POLAR_BEARS_TEXT },
-            { "stage3_checklist", @"Recipe for Ozempic:
-            -crab legs
+            { "stage3_checklist", @"Ingredients:
+            -crab claws
             -fish fins
             -fish eyes
             -octopus tentacles" },
@@ -177,12 +181,12 @@ Not yet.
             " },
             { "stage4_oceanarticle", OCEAN_ARTICLE_TEXT },
             { "stage4_polarbears",   POLAR_BEARS_TEXT },
-            { "stage4_checklist", @"Recipe for Ozempic:
-            -crab legs
+            { "stage4_checklist", @"Ingredients:
+            -crab claws
             -fish fins
             -fish eyes
             -octopus tentacles
-            -a miracle as rare as getting an internship at Berkeley" },
+            -??????" },
             { "stage4_poem", POEM_TEXT }
         };
     }
@@ -195,8 +199,18 @@ Not yet.
         objectFonts["stage2_symptoms"] = altFont;
         objectFonts["stage3_symptoms"] = altFont;
         objectFonts["stage4_symptoms"] = altFont;
+        objectFonts["stage3_poem"] = altFont;
+        objectFonts["stage4_poem"] = altFont;
+        objectFonts["stage0_checklist"] = altFont;
+        objectFonts["stage1_checklist"] = altFont;
+        objectFonts["stage2_checklist"] = altFont;
+        objectFonts["stage3_checklist"] = altFont;
+        objectFonts["stage4_checklist"] = altFont;
+        objectFonts["stage5_checklist"] = altFont;
         popUpCanvas.SetActive(false);
+        fishDiagramCanvas.SetActive(false);
         infoPanelOpen = false;
+        fishDiagramOpen = false;
         infoText.color = Color.black;
         stage1.SetActive(false);
         stage2.SetActive(false);
@@ -214,6 +228,7 @@ Not yet.
         if (stage5 != null) stage5.SetActive(FishSpawner.currentLevel == 4);
 
         closeButton.onClick.AddListener(OnCloseInfo);
+        diagramCloseButton.onClick.AddListener(OnDiagramClosed);
         revampedAudio.Instance.UpdateMusic();
     }
 
@@ -233,6 +248,20 @@ Not yet.
         infoText.fontSizeMax = 24f;
         popUpCanvas.SetActive(true);
         infoPanelOpen = true;
+    }
+
+    public void OnDiagramClicked()
+    {
+        if (fishDiagramOpen) return;
+
+        fishDiagramCanvas.SetActive(true);
+        fishDiagramOpen = true;
+    }
+
+    public void OnDiagramClosed()
+    {
+        fishDiagramCanvas.SetActive(false);
+        fishDiagramOpen = false;
     }
 
     public void OnCloseInfo()
