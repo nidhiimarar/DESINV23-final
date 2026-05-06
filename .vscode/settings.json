@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "DESINV23-final.slnx"
+    "dotnet.defaultSolution": "DES-INV-23-FINAL.slnx"
 }
