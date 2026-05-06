@@ -4684,7 +4684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[0].fishTypes.Array.data[0].fleeSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[0].fishTypes.Array.data[1].fleeSpeed
@@ -4696,7 +4696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[0].fleeSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[0].swimSpeed
@@ -4720,7 +4720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[2].fishTypes.Array.data[0].fleeSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[2].fishTypes.Array.data[0].swimSpeed
@@ -4796,7 +4796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[0].fishTypes.Array.data[0].clickRadius
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[0].fishTypes.Array.data[1].clickRadius
@@ -4812,7 +4812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[0].clickRadius
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[1].fishTypes.Array.data[1].clickRadius
@@ -4824,7 +4824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[2].fishTypes.Array.data[0].clickRadius
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6691178951277183529, guid: 2b02b9f0838478a4595b092f150d8dcd, type: 3}
       propertyPath: levels.Array.data[2].fishTypes.Array.data[1].clickRadius
