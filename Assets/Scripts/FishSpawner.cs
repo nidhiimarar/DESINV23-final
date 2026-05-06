@@ -181,12 +181,12 @@ public class FishSpawner : MonoBehaviour
     {
         return type switch
         {
-            Fish.MovementType.Wander   => "make me into a fish stick",
-            Fish.MovementType.Traverse => "no thoughts, head full of bubbles",
-            Fish.MovementType.Crab     => "i taste great in chowder",
+            Fish.MovementType.Wander   => "Barreleye:" + "\n" + "Yes, those are its eyes, and they’re always looking up.",
+            Fish.MovementType.Traverse => "Ribbonfish:" + "\n" + "Their beautiful coloration camouflages them as they attack organisms that eat coral and anemone.",
+            Fish.MovementType.Crab     => "Crab:" + "\n" + "A local specialty is crab soup served in the shell.",
             Fish.MovementType.Octopus  => (currentLevel == 3 || currentLevel == 4) 
-                ? "it's staring."
-                : "i definitely have more heart than ur job interviewer",
+                ? "Octopus:" +"\n" + "it's staring."
+                : "Octopus:" + "\n" + "They bleed blue.",
             
             _                          => "Unknown creature."
         };
