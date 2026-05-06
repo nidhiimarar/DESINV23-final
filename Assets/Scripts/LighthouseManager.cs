@@ -205,6 +205,7 @@ Not yet.
         if (stage5 != null) stage5.SetActive(FishSpawner.currentLevel == 4);
 
         closeButton.onClick.AddListener(OnCloseInfo);
+        revampedAudio.Instance.UpdateMusic();
     }
 
     // Hook this up in each Button's OnClick in the inspector.
@@ -234,6 +235,7 @@ Not yet.
     public void ToTheOcean()
     {
         FishSpawner.currentLevel++;
+        revampedAudio.Instance.UpdateMusic();
         SceneManager.LoadScene("Ocean");
     }
 
